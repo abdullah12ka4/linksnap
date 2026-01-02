@@ -27,7 +27,7 @@ export default function InputComponent() {
             .then((result) => {
                 setloading(false)
                 toast(result.message)
-                setgenerate(`${shortUrl}`)
+                setgenerate(`${process.env.NEXT_PUBLIC_HOST}/${shortUrl}`)
                 form.reset()
             }).catch((error) => console.error(error))
     }
