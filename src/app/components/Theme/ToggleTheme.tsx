@@ -17,7 +17,7 @@ export function ModeToggle() {
     <Button
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
       size="icon"
-      className="relative bg-transparent hover:bg-transparent p-2 focus:outline-none !ring-0"
+      className="relative bg-transparent hover:bg-transparent text-black dark:text-white p-2 focus:outline-none !ring-0"
     >
       <Sun className={`absolute h-5 w-5 transition-all ${theme === "light" ? "scale-100 rotate-0" : "scale-0 -rotate-90"}`} />
       <Moon className={`absolute h-5 w-5 transition-all ${theme === "dark" ? "scale-100 rotate-0" : "scale-0 rotate-90"}`} />

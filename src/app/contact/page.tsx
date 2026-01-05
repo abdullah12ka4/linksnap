@@ -3,12 +3,15 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { Spinner } from '@/components/ui/spinner'
 import { Textarea } from '@/components/ui/textarea'
 import { LucideIcon, Mail, Phone } from 'lucide-react'
 import Link from 'next/link'
-import { FormEvent } from 'react'
+import { FormEvent, useState } from 'react'
+import { toast } from 'sonner'
 
 export default function page() {
+  const [loading, setloading] = useState(false)
   const cardContent = [
     {
       icon: Mail,
@@ -34,15 +37,29 @@ export default function page() {
     },
   ]
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>)=>{
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>)=>{
     e.preventDefault();
+    setloading(true)
     const form = e.currentTarget;
     const formData = new FormData(form)
     const name = formData.get("name")?.toString()
     const email = formData.get("email")?.toString().trim()
     const subject = formData.get("subject")?.toString()
     const message = formData.get("message")?.toString()
-      
+
+    const response = await fetch('/api/contact', {
+      method: "POST",
+      headers: {"Content-Type":"application/json"},
+      body: JSON.stringify({name, email, subject, message}),
+    })
+    const data = await response.json();
+    setloading(false)
+  if (data.success) {
+    toast.success('Message sent successfully ✅')
+
+  } else {
+    toast.error("Failed to send message ❌");
+  }    
   }
   return (
     <div className='p-4 sm:p-10'>
@@ -83,7 +100,7 @@ export default function page() {
                   <Label>Message *</Label>
                   <Textarea className='resize-none' name="message" placeholder='Tell us more about your inquiry...' required/>
                 </div>
-                <Button type='submit' variant="secondary" className='cursor-pointer' >Send Message</Button>
+                <Button type='submit' variant="secondary" className='cursor-pointer' >{loading ? <Spinner/> : 'Send Message' }</Button>
               </form>
 
             </CardContent>

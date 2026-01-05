@@ -10,9 +10,9 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand Section */}
           <div className="flex flex-col gap-3">
-            <div className="logo flex items-center gap-2">
+            <Link href="/" className="logo flex items-center gap-2">
                 <Logo className="h-12" />    <div><span className="">Link</span><span className="font-bold text-xl">Snap</span></div>
-            </div>
+            </Link>
             <p className="text-muted-foreground text-sm">
               Fast, reliable, and easy-to-use link shortening service.
             </p>

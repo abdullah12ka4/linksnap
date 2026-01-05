@@ -6,6 +6,7 @@ import { Copy, Link as LucidLink, Zap } from "lucide-react";
 import React, { useState } from "react";
 import Link from "next/link";
 import { toast } from "sonner";
+import { Spinner } from "@/components/ui/spinner";
 
 export default function InputComponent() {
     const [generate, setgenerate] = useState("")
@@ -59,7 +60,7 @@ export default function InputComponent() {
                             </div>
                             <Button
                                 type="submit"
-                                className="cursor-pointer">{!loading ? <div className="flex gap-2 items-center"><span><Zap /></span> {" "} Shorten</div> : <div>loading...</div>}</Button>
+                                className="cursor-pointer">{!loading ? <div className="flex gap-2 items-center"><span><Zap /></span> {" "} Shorten</div> : <Spinner/>}</Button>
                         </form>
                     </CardDescription>
                 </CardContent>

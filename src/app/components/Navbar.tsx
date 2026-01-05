@@ -10,10 +10,10 @@ export default function Navbar() {
     const [mblView, setmblView] = useState(false)
     const path = usePathname()
     return (
-        <header className="sticky top-0  bg-primary dark:bg-secondary dark:text-white text-secondary py-1 px-2 sm:px-6 flex justify-between items-center">
-            <div className="logo flex items-center gap-2">
+        <header className="sticky top-0 z-10 border-b shadow-lg border-b-black/10 dark:border-b-white/10 backdrop-blur-2xl  dark:text-white text-black py-1.5 px-2 sm:px-6 flex justify-between items-center">
+            <Link href="/" className="logo flex items-center gap-2">
                 <Logo className="h-12" />    <div><span className="">Link</span><span className="font-bold text-xl">Snap</span></div>
-            </div>
+            </Link>
             <div className="flex  flex-row-reverse sm:flex-row gap-2 sm:gap-6 items-center">
                 <Menu
                     onClick={() => setmblView(true)}
